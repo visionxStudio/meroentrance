@@ -22,4 +22,4 @@ Online Entrance Preparation and Discussion Platform
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-[![All Contributors](https://img.shields.io/github/all-contributors/projectOwner/projectName?color=ee8449&style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/github/all-contributors/visionxStudio/meroentrance?color=ee8449&style=flat-square)](#contributors)
