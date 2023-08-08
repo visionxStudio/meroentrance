@@ -57,6 +57,13 @@ def edit_question(question_id):
 
     return render_template('edit_question.html', question=question)
 
+@app.route('/delete/<int:question_id>')
+def delete_question(question_id):
+    db = get_db()
+    db.execute('DELETE FROM questions WHERE id = ?', (question_id,))
+    db.commit()
+    return redirect(url_for('view_questions'))
+
 
 if __name__ == '__main__':
     app.run(debug=True)
