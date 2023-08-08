@@ -7,3 +7,6 @@ Online Entrance Preparation and Discussion Platform
 
 ## Generate Schema 
 <i> sqlite3 app/database.db < mcq_database.sql </i>
+
+## How to Run 
+ <i> <b> python run.py </b> </i>
