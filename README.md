@@ -3,7 +3,7 @@ Online Entrance Preparation and Discussion Platform
 
 
 ## Install Flask 
-pinp install falsk
+<i> pinp install falsk  </i>
 
 ## Generate Schema 
 sqlite3 app/database.db < mcq_database.sql
