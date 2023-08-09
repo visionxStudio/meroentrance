@@ -53,9 +53,13 @@ def edit_question(question_id):
         option3 = request.form['option3']
         option4 = request.form['option4']
         correct_option = request.form['correct_option']
+        question_image = request.form['question_image']
+        is_important = request.form.get("is_important") == "on"
+        question_hint = request.form['question_hint']
+        year_asked = request.form['year_asked']
 
-        db.execute('UPDATE questions SET question = ?, option1 = ?, option2 = ?, option3 = ?, option4 = ?, correct_option = ? WHERE id = ?',
-                   (new_question, option1, option2, option3, option4, correct_option, question_id))
+        db.execute('UPDATE questions SET question = ?, option1 = ?, option2 = ?, option3 = ?, option4 = ?, correct_option = ?, question_image = ?,  is_important = ?, question_hint = ?, year_asked = ? WHERE id = ?',
+                   (new_question, option1, option2, option3, option4, correct_option, question_image, is_important, question_hint, year_asked, question_id))
         db.commit()
         return redirect(url_for('view_questions'))
 

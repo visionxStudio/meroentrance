@@ -1,3 +1,8 @@
+/* body {
+    background: linear-gradient(to right bottom, #648880, #293f50);
+    background: #466368;
+} */
+
 #snackbar {
     visibility: hidden;
     min-width: 250px;
