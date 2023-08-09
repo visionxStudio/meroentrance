@@ -22,12 +22,16 @@ def add_question():
         option3 = request.form['option3']
         option4 = request.form['option4']
         correct_option = request.form['correct_option']
+        question_image = request.form['question_image']
+        is_important = request.form.get("is_important") == "on"
+        question_hint = request.form['question_hint']
+        year_asked = request.form['year_asked']
 
         db = get_db()
-        db.execute('INSERT INTO questions (question, option1, option2, option3, option4, correct_option) VALUES (?, ?, ?, ?, ?, ?)',
-                   (question, option1, option2, option3, option4, correct_option))
+        db.execute('INSERT INTO questions (question, option1, option2, option3, option4, correct_option, question_image,  is_important, question_hint, year_asked  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                   (question, option1, option2, option3, option4, correct_option, question_image, is_important, question_hint, year_asked))
         db.commit()
-        return redirect(url_for('view_questions'))
+        return render_template('add_question.html', toast='Question added successfully!')
 
     return render_template('add_question.html')
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>View Questions</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -13,6 +14,7 @@
             min-height: 100vh;
             margin-top: 20px;
         }
+
         .question-card {
             margin-bottom: 20px;
             border: 2px solid #ddd;
@@ -20,9 +22,11 @@
 
             padding: 15px;
         }
+
         .correct-answer {
             color: green;
         }
+
         .delete-btn {
             /* position: absolute; */
             top: 10px;
@@ -30,6 +34,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container center-content">
         <div class="card w-75">
@@ -38,22 +43,50 @@
             </div>
             <div class="card-body">
                 {% for question in questions %}
-                
+
                 <div class="question-card">
-                    <h5 class="card-title"><strong>{{ question['question'] }}</strong></h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item {% if question['correct_option'] == 1 %}correct-answer{% endif %}">{{ question['option1'] }}</li>
-                        <li class="list-group-item {% if question['correct_option'] == 2 %}correct-answer{% endif %}">{{ question['option2'] }}</li>
-                        <li class="list-group-item {% if question['correct_option'] == 3 %}correct-answer{% endif %}">{{ question['option3'] }}</li>
-                        <li class="list-group-item {% if question['correct_option'] == 4 %}correct-answer{% endif %}">{{ question['option4'] }}</li>
+                    <h5 class="card-title"><strong>{{ question['question'] }}
+                            {% if question['year_asked'] %}
+                            {{ question['year_asked'] }}
+                            {% endif %}
+                        </strong>
+                    </h5>
+
+                    {% if question['question_image'] %}
+                    <p> <b>Question Image Link :- </b> {{ question['question_image'] }}</p>
+                    {% endif %}
+                    <b>Options List</b>
+                    <ul class="list-group list-group-flush"
+                        style="padding-left: 10px; padding-bottom: 10px; padding-top: 10px; padding-bottom: 15px;">
+                        <li class="list-group-item {% if question['correct_option'] == 1 %}correct-answer{% endif %}">{{
+                            question['option1'] }}</li>
+                        <li class="list-group-item {% if question['correct_option'] == 2 %}correct-answer{% endif %}">{{
+                            question['option2'] }}</li>
+                        <li class="list-group-item {% if question['correct_option'] == 3 %}correct-answer{% endif %}">{{
+                            question['option3'] }}</li>
+                        <li class="list-group-item {% if question['correct_option'] == 4 %}correct-answer{% endif %}">{{
+                            question['option4'] }}</li>
                     </ul>
-                    <a href="{{ url_for('edit_question', question_id=question['id']) }}" class="btn btn-secondary">Edit</a>
-                    <a href="{{ url_for('delete_question', question_id=question['id']) }}" class="btn btn-danger delete-btn">Delete</a>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="is_important" name="is_important" {% if
+                            question and question['is_important'] %}checked{% endif %}>
+                        <label class="form-check-label" for="is_important">Important Question</label>
+                    </div>
+                    {% if question['question_hint'] %}
+                    <p> <b>Question Hint :- </b> {{ question['question_hint'] }}</p>
+                    {% endif %}
+
+
+                    <a href="{{ url_for('edit_question', question_id=question['id']) }}"
+                        class="btn btn-secondary">Edit</a>
+                    <a href="{{ url_for('delete_question', question_id=question['id']) }}"
+                        class="btn btn-danger delete-btn">Delete</a>
 
 
                 </div>
                 <!-- Inside the loop for displaying questions -->
-             
+
 
                 {% endfor %}
             </div>
@@ -63,4 +96,5 @@
         </div>
     </div>
 </body>
+
 </html>

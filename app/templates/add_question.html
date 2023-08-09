@@ -3,6 +3,7 @@
 <head>
     <title>Add Question</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel ="stylesheet" href="../static/styles.css">
     <style>
         /* Custom CSS for centering content */
         .center-content {
@@ -10,13 +11,38 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            min-height: 100vh;
         }
     </style>
 </head>
 <body>
     <div class="container center-content">
         <div class="card w-50">
+            {% if toast %}
+             <!-- Display toast -->
+            <div id="snackbar">{{toast}}</div>
+
+            <script>
+
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            </script>
+            {% endif %}
+             <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">Added</strong>
+                        <small>Questions Added</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
+                </div>
+            </div>
             <div class="card-header">
                 <h1 class="text-center">Add Question</h1>
             </div>
@@ -25,6 +51,10 @@
                     <div class="mb-3">
                         <label for="question" class="form-label">Question:</label>
                         <input type="text" class="form-control" name="question" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="question_image" class="form-label">Question Image (If Applicable)</label>
+                        <input type="text" class="form-control" name="question_image" >
                     </div>
                     <div class="mb-3">
                         <label for="option1" class="form-label">Option 1:</label>
@@ -43,6 +73,18 @@
                         <input type="text" class="form-control" name="option4" required>
                     </div>
                     <div class="mb-3">
+                        <label for="question_hint" class="form-label">Hint</label>
+                        <input type="text" class="form-control" name="question_hint" >
+                    </div>
+                      <div class="mb-3">
+                        <label for="year_asked" class="form-label">Year Asked</label>
+                        <input type="text" class="form-control" name="year_asked" >
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="is_important" name="is_important">
+                        <label class="form-check-label" for="is_important">Important Question</label>
+                    </div>
+                    <div class="mb-3">
                         <label for="correct_option" class="form-label">Correct Option:</label>
                         <input type="number" class="form-control" name="correct_option" min="1" max="4" required>
                     </div>
@@ -52,9 +94,11 @@
                 </form>
             </div>
             <div class="card-footer text-center">
-                <a href="{{ url_for('add_question') }}" class="btn btn-secondary">Home</a>
+                <a href="{{ url_for('home') }}" class="btn btn-secondary">Home</a>
             </div>
         </div>
+        
     </div>
+    
 </body>
 </html>
