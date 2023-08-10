@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
 app = Flask(__name__)
-app.config['DATABASE'] = 'app/unit.db'
+app.config['DATABASE'] = 'app/english.db'
 
 def get_db():
     db = sqlite3.connect(app.config['DATABASE'])
